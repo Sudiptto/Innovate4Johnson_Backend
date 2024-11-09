@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+        .route {
+            margin-bottom: 20px;
+        }
+        .route h2 {
+            color: #333;
+        }
+        .route pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>API Documentation</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#signupCanidate">Signup Canidate</a></li>
+                    <li><a href="#loginCanidate">Login Canidate</a></li>
+                    <li><a href="#signupRecruiter">Signup Recruiter</a></li>
+                    <li><a href="#loginRecruiter">Login Recruiter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <div class="route" id="signupCanidate">
+                <h2>Signup Canidate</h2>
+                <h3>Endpoint</h3>
+                <pre>POST /signupCanidate</pre>
+                <h3>Sample Input</h3>
+                <pre>
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "john_doe",
+    "email": "john@example.com",
+    "gradDate": "2027",
+    "location": "New York",
+    "password": "securepassword123"
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X POST http://localhost:5000/signupCanidate \
+-H "Content-Type: application/json" \
+-d '{
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "john_doe",
+    "email": "john@example.com",
+    "gradDate": "2027",
+    "location": "New York",
+    "password": "securepassword123"
+}'
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+
+url = "http://localhost:5000/signupCanidate"
+payload = {
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "john_doe",
+    "email": "john@example.com",
+    "gradDate": "2027",
+    "location": "New York",
+    "password": "securepassword123"
+}
+response = requests.post(url, json=payload)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+
+const url = "http://localhost:5000/signupCanidate";
+const payload = {
+    firstName: "John",
+    lastName: "Doe",
+    username: "john_doe",
+    email: "john@example.com",
+    gradDate: "2027",
+    location: "New York",
+    password: "securepassword123"
+};
+
+axios.post(url, payload)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+                <h3>Potential Output</h3>
+                <pre>
+{
+    "message": "User created successfully"
+}
+                </pre>
+            </div>
+
+            <div class="route" id="loginCanidate">
+                <h2>Login Canidate</h2>
+                <h3>Endpoint</h3>
+                <pre>POST /loginCanidate</pre>
+                <h3>Sample Input</h3>
+                <pre>
+{
+    "email": "john@example.com",
+    "password": "securepassword123"
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X POST http://localhost:5000/loginCanidate \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "john@example.com",
+    "password": "securepassword123"
+}'
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+
+url = "http://localhost:5000/loginCanidate"
+payload = {
+    "email": "john@example.com",
+    "password": "securepassword123"
+}
+response = requests.post(url, json=payload)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+
+const url = "http://localhost:5000/loginCanidate";
+const payload = {
+    email: "john@example.com",
+    password: "securepassword123"
+};
+
+axios.post(url, payload)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+                <h3>Potential Output</h3>
+                <pre>
+{
+    "message": "Login successful",
+    "access_token": "your_jwt_token"
+}
+                </pre>
+            </div>
+
+            <div class="route" id="signupRecruiter">
+                <h2>Signup Recruiter</h2>
+                <h3>Endpoint</h3>
+                <pre>POST /signupRecruiter</pre>
+                <h3>Sample Input</h3>
+                <pre>
+{
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "jane@jnj.com",
+    "location": "New York",
+    "password": "securepassword123"
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X POST http://localhost:5000/signupRecruiter \
+-H "Content-Type: application/json" \
+-d '{
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "jane@jnj.com",
+    "location": "New York",
+    "password": "securepassword123"
+}'
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+
+url = "http://localhost:5000/signupRecruiter"
+payload = {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "jane@jnj.com",
+    "location": "New York",
+    "password": "securepassword123"
+}
+response = requests.post(url, json=payload)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+
+const url = "http://localhost:5000/signupRecruiter";
+const payload = {
+    firstName: "Jane",
+    lastName: "Doe",
+    email: "jane@jnj.com",
+    location: "New York",
+    password: "securepassword123"
+};
+
+axios.post(url, payload)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+                <h3>Potential Output</h3>
+                <pre>
+{
+    "message": "Recuriter created successfully"
+}
+                </pre>
+            </div>
+
+            <div class="route" id="loginRecruiter">
+                <h2>Login Recruiter</h2>
+                <h3>Endpoint</h3>
+                <pre>POST /loginRecruiter</pre>
+                <h3>Sample Input</h3>
+                <pre>
+{
+    "email": "jane@jnj.com",
+    "password": "securepassword123"
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X POST http://localhost:5000/loginRecruiter \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "jane@jnj.com",
+    "password": "securepassword123"
+}'
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+
+url = "http://localhost:5000/loginRecruiter"
+payload = {
+    "email": "jane@jnj.com",
+    "password": "securepassword123"
+}
+response = requests.post(url, json=payload)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+
+const url = "http://localhost:5000/loginRecruiter";
+const payload = {
+    email: "jane@jnj.com",
+    password: "securepassword123"
+};
+
+axios.post(url, payload)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+                <h3>Potential Output</h3>
+                <pre>
+{
+    "message": "Login successful",
+    "access_token": "your_jwt_token"
+}
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
