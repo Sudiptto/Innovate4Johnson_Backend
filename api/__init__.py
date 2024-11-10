@@ -33,8 +33,6 @@ def create_app():
     app.register_blueprint(project, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(users, url_prefix="/")
-    app.register_blueprint(project, url_prefix="/")
-    app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(userData, url_prefix="/")
 
     # import models database
