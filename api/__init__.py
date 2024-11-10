@@ -31,7 +31,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     # import models database
-    from .models import Canidate, Recruiter
+    from .models import Canidate, Recruiter, InnovationChallenge, canidateTeams, canidateToTeam
     CORS(app)  # Enable CORS for all routes
     with app.app_context():
         db.create_all()

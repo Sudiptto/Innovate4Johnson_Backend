@@ -104,6 +104,19 @@ class canidateTeams(db.Model):
     # db relational
     innovation_challenge = db.relationship('InnovationChallenge', backref='canidateTeams')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'projectName': self.projectName,
+            'user_ids': self.user_ids,
+            'user_emails': self.user_emails,
+            'user_names': self.user_names,
+            'innovation_challenge_id': self.innovation_challenge_id,
+            'github_link': self.github_link,
+            'figmaLink': self.figmaLink,
+            'descriptionOfProject': self.descriptionOfProject
+        }
+
 # canidate to team -> easy mapping between user and team
 class canidateToTeam(db.Model):
 

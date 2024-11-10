@@ -8,4 +8,8 @@ project = Blueprint('project', __name__)
 # works
 @project.route('/test', methods=['GET'])
 def test():
+    # get everything from the canidateTeams table using sql query
+    # canidateTeams.query.all()
     return jsonify({'message': 'Test route'}) 
+
+    
