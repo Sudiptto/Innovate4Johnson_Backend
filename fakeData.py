@@ -11,7 +11,7 @@ import bcrypt
 faker = Faker()
 
 def generate_users():
-    def register_candidate(first_name, last_name, username, email, grad_date, location, password, linkedin, github):
+    def register_candidate(first_name, last_name, username, email, grad_date, location, password, linkedin, github, resumeUrl):
         if not Canidate.query.filter_by(email=email).first() and not Canidate.query.filter_by(username=username).first():
             new_candidate = Canidate(
                 firstName=first_name,
@@ -22,6 +22,7 @@ def generate_users():
                 github=github,
                 gradDate=grad_date,
                 location=location,
+                resumeUrl=resumeUrl,
                 password_hash=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8'),
                 date_created=datetime.utcnow()
             )
@@ -58,7 +59,8 @@ def generate_users():
         password = faker.password()
         linkedin = f"linked.com/{first_name.lower()}-{last_name.lower()}"
         github = f"github.com/{first_name.lower()}"
-        register_candidate(first_name, last_name, username, email, grad_date, location, password, linkedin, github)
+        resume_url = f"s3.amazonaws.com/{first_name}-{last_name}/resume.pdf"
+        register_candidate(first_name, last_name, username, email, grad_date, location, password, linkedin, github, resumeUrl = resume_url)
 
     def generate_innovation_challenge():
         title = "Develop a way to distribute medicine for students amongst schools"

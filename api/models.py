@@ -19,6 +19,7 @@ class Canidate(db.Model):
     gradDate = db.Column(db.String(150), nullable=False)
     linkedIn = db.Column(db.String(250), nullable=False)
     github = db.Column(db.String(250), nullable=False)
+    resumeUrl = db.Column(db.String(550), nullable=False)
     password_hash = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False)
 

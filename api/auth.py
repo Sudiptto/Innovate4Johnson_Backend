@@ -17,7 +17,8 @@ auth = Blueprint('auth', __name__)
     "gradDate": "2027",
     "location": "New York",
     "linkedIn": "https://www.linkedin.com/in/johndoe",
-    "github": "https://www.github.com
+    "github": "https://www.github.com,
+    "resumeUrl": "https://www.resume.com",
     "password": "securepassword123"
 }
 """
@@ -36,6 +37,7 @@ def signup():
     github = data.get('github')
     password = data.get('password')
     location = data.get('location')
+    resumeUrl = data.get('resumeUrl')
 
     # Validate required fields
     if not (first_name and last_name and username and email and password):
@@ -66,6 +68,7 @@ def signup():
         password_hash=password_hash,
         linkedIn=linkedIn,
         github=github,
+        resumeUrl=resumeUrl,
         date_created=datetime.utcnow()
     )
 
