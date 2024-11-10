@@ -3,9 +3,9 @@ from flask_jwt_extended import create_access_token, jwt_required
 from .models import *
 
 
-views = Blueprint('views', __name__)
+project = Blueprint('project', __name__)
 
 # works
-@views.route('/test', methods=['GET'])
+@project.route('/test', methods=['GET'])
 def test():
     return jsonify({'message': 'Test route'}) 

@@ -23,10 +23,10 @@ def create_app():
     app.config['JWT_SECRET_KEY'] = JWT_SECRET_KEY
     jwt = JWTManager(app)
 
-    from .views import views
+    from .project import project
     from .auth import auth
 
-    app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(project, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
     # import models database
