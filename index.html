@@ -78,11 +78,13 @@
                     <li><a href="#loginCanidate">Login Canidate</a></li>
                     <li><a href="#signupRecruiter">Signup Recruiter</a></li>
                     <li><a href="#loginRecruiter">Login Recruiter</a></li>
+                    <li><a href="#listUser">List Users</a></li>
+                    <li><a href="#getUser">Get User</a></li>
+                    <li><a href="#getAllTeams">Get All Teams</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <div class="container">
         <div class="content">
             <div class="route" id="signupCanidate">
@@ -98,6 +100,8 @@
     "email": "john@example.com",
     "gradDate": "2027",
     "location": "New York",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://www.github.com/johndoe",
     "password": "securepassword123"
 }
                 </pre>
@@ -112,13 +116,14 @@ curl -X POST http://localhost:5000/signupCanidate \
     "email": "john@example.com",
     "gradDate": "2027",
     "location": "New York",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://www.github.com/johndoe",
     "password": "securepassword123"
 }'
                 </pre>
                 <h3>Python</h3>
                 <pre>
 import requests
-
 url = "http://localhost:5000/signupCanidate"
 payload = {
     "firstName": "John",
@@ -127,6 +132,8 @@ payload = {
     "email": "john@example.com",
     "gradDate": "2027",
     "location": "New York",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://www.github.com/johndoe",
     "password": "securepassword123"
 }
 response = requests.post(url, json=payload)
@@ -135,7 +142,6 @@ print(response.json())
                 <h3>TypeScript</h3>
                 <pre>
 import axios from 'axios';
-
 const url = "http://localhost:5000/signupCanidate";
 const payload = {
     firstName: "John",
@@ -144,9 +150,10 @@ const payload = {
     email: "john@example.com",
     gradDate: "2027",
     location: "New York",
+    linkedIn: "https://www.linkedin.com/in/johndoe",
+    github: "https://www.github.com/johndoe",
     password: "securepassword123"
 };
-
 axios.post(url, payload)
     .then(response => console.log(response.data))
     .catch(error => console.error(error));
@@ -158,7 +165,6 @@ axios.post(url, payload)
 }
                 </pre>
             </div>
-
             <div class="route" id="loginCanidate">
                 <h2>Login Canidate</h2>
                 <h3>Endpoint</h3>
@@ -182,7 +188,6 @@ curl -X POST http://localhost:5000/loginCanidate \
                 <h3>Python</h3>
                 <pre>
 import requests
-
 url = "http://localhost:5000/loginCanidate"
 payload = {
     "email": "john@example.com",
@@ -194,13 +199,11 @@ print(response.json())
                 <h3>TypeScript</h3>
                 <pre>
 import axios from 'axios';
-
 const url = "http://localhost:5000/loginCanidate";
 const payload = {
     email: "john@example.com",
     password: "securepassword123"
 };
-
 axios.post(url, payload)
     .then(response => console.log(response.data))
     .catch(error => console.error(error));
@@ -213,7 +216,6 @@ axios.post(url, payload)
 }
                 </pre>
             </div>
-
             <div class="route" id="signupRecruiter">
                 <h2>Signup Recruiter</h2>
                 <h3>Endpoint</h3>
@@ -243,7 +245,6 @@ curl -X POST http://localhost:5000/signupRecruiter \
                 <h3>Python</h3>
                 <pre>
 import requests
-
 url = "http://localhost:5000/signupRecruiter"
 payload = {
     "firstName": "Jane",
@@ -258,7 +259,6 @@ print(response.json())
                 <h3>TypeScript</h3>
                 <pre>
 import axios from 'axios';
-
 const url = "http://localhost:5000/signupRecruiter";
 const payload = {
     firstName: "Jane",
@@ -267,7 +267,6 @@ const payload = {
     location: "New York",
     password: "securepassword123"
 };
-
 axios.post(url, payload)
     .then(response => console.log(response.data))
     .catch(error => console.error(error));
@@ -279,7 +278,6 @@ axios.post(url, payload)
 }
                 </pre>
             </div>
-
             <div class="route" id="loginRecruiter">
                 <h2>Login Recruiter</h2>
                 <h3>Endpoint</h3>
@@ -303,7 +301,6 @@ curl -X POST http://localhost:5000/loginRecruiter \
                 <h3>Python</h3>
                 <pre>
 import requests
-
 url = "http://localhost:5000/loginRecruiter"
 payload = {
     "email": "jane@jnj.com",
@@ -315,13 +312,11 @@ print(response.json())
                 <h3>TypeScript</h3>
                 <pre>
 import axios from 'axios';
-
 const url = "http://localhost:5000/loginRecruiter";
 const payload = {
     email: "jane@jnj.com",
     password: "securepassword123"
 };
-
 axios.post(url, payload)
     .then(response => console.log(response.data))
     .catch(error => console.error(error));
@@ -332,6 +327,126 @@ axios.post(url, payload)
     "message": "Login successful",
     "access_token": "your_jwt_token"
 }
+                </pre>
+            </div>
+            <div class="route" id="listUser">
+                <h2>List Users</h2>
+                <h3>Endpoint</h3>
+                <pre>GET /listUser</pre>
+                <h3>Sample Output</h3>
+                <pre>
+{
+    "canidates": [
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "id": 1
+        },
+        {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "id": 2
+        },
+        ...
+    ]
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X GET http://localhost:5000/listUser
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+url = "http://localhost:5000/listUser"
+response = requests.get(url)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+const url = "http://localhost:5000/listUser";
+axios.get(url)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+            </div>
+            <div class="route" id="getUser">
+                <h2>Get User</h2>
+                <h3>Endpoint</h3>
+                <pre>GET /getUser/&lt;id&gt;</pre>
+                <h3>Sample Output</h3>
+                <pre>
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "johndoe",
+    "email": "john@example.com",
+    "gradDate": "2023",
+    "location": "New York",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://www.github.com/johndoe"
+}
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X GET http://localhost:5000/getUser/1
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+url = "http://localhost:5000/getUser/1"
+response = requests.get(url)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+const url = "http://localhost:5000/getUser/1";
+axios.get(url)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+                </pre>
+            </div>
+            <div class="route" id="getAllTeams">
+                <h2>Get All Teams</h2>
+                <h3>Endpoint</h3>
+                <pre>GET /getAllTeams</pre>
+                <h3>Sample Output</h3>
+                <pre>
+[
+    {
+        "id": 1,
+        "projectName": "Project Lifeline",
+        "user_ids": "1;2;3",
+        "user_emails": "john@example.com,jane@example.com,jack@example.com",
+        "user_names": "John Doe, Jane Doe, Jack Doe",
+        "innovation_challenge_id": 1,
+        "github_link": "https://github.com/team1",
+        "figmaLink": "https://figma.com/team1",
+        "descriptionOfProject": "A project to save lives."
+    },
+    ...
+]
+                </pre>
+                <h3>HTTPS Request</h3>
+                <pre>
+curl -X GET http://localhost:5000/getAllTeams
+                </pre>
+                <h3>Python</h3>
+                <pre>
+import requests
+url = "http://localhost:5000/getAllTeams"
+response = requests.get(url)
+print(response.json())
+                </pre>
+                <h3>TypeScript</h3>
+                <pre>
+import axios from 'axios';
+const url = "http://localhost:5000/getAllTeams";
+axios.get(url)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
                 </pre>
             </div>
         </div>

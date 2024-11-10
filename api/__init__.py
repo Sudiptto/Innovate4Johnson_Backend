@@ -27,9 +27,11 @@ def create_app():
 
     from .project import project
     from .auth import auth
+    from .userData import userData
 
     app.register_blueprint(project, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+    app.register_blueprint(userData, url_prefix="/")
 
     # import models database
     from .models import (
