@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from os import path
 from env.passwords import *
+from flask_cors import CORS
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -31,7 +32,7 @@ def create_app():
 
     # import models database
     from .models import Canidate, Recruiter
-    
+    CORS(app)  # Enable CORS for all routes
     with app.app_context():
         db.create_all()
 
