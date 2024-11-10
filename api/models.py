@@ -2,6 +2,7 @@
 File Description: Get the user model (database)
 """
 
+import datetime
 from . import db
 from flask_bcrypt import Bcrypt
 
@@ -22,6 +23,19 @@ class Canidate(db.Model):
     resumeUrl = db.Column(db.String(550), nullable=False)
     password_hash = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False)
+
+class Team(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    projectName = db.Column(db.String(150), nullable=False)
+    user_ids = db.Column(db.ARRAY(db.Integer), nullable=False)
+    user_emails = db.Column(db.ARRAY(db.String(150)), nullable=False)
+    user_names = db.Column(db.ARRAY(db.String(150)), nullable=False)
+    innovation_challenge_id = db.Column(db.String(150), nullable=False)
+    github_link = db.Column(db.String(250), nullable=False)
+    figma_link = db.Column(db.String(250), nullable=False)
+    description_of_project = db.Column(db.String(550), nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
 
     # helper functions for password hashing
     @property

@@ -11,3 +11,10 @@ def getAllUsers(user_id):
     if user:
         return jsonify(user.to_dict1())
     return jsonify({"error": "User not found"}), 404
+
+@users.route("/getAllUsers", methods=["GET"])
+def getAllUsers():
+    users = Canidate.query.all()
+    users_list = [user.to_dict1() for user in users]
+    return jsonify(users_list)
+
