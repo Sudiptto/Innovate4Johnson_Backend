@@ -9,10 +9,6 @@ project = Blueprint("project", __name__)
 # works
 @project.route("/test", methods=["GET"])
 def test():
+    # get everything from the canidateTeams table using sql query
+    # canidateTeams.query.all()
     return jsonify({"message": "Test route"})
-
-
-@project.route("/getAllTeams", methods=["GET"])
-def getAllTeams():
-    teams = canidateTeams.query.all()
-    return teams
