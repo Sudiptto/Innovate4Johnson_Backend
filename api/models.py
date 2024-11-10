@@ -15,6 +15,8 @@ class Canidate(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     location = db.Column(db.String(150), nullable=False)
     gradDate = db.Column(db.String(150), nullable=False)
+    linkedIn = db.Column(db.String(250), nullable=False)
+    github = db.Column(db.String(250), nullable=False)
     password_hash = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False)
 
@@ -70,3 +72,40 @@ class InnovationChallenge(db.Model):
     # foreign key -> recruiter_id (recruiter who posted the challenge) 
     recruiter_id = db.Column(db.Integer, db.ForeignKey('recruiter.id'), nullable=False)
     recruiter = db.relationship('Recruiter', backref='innovation_challenge')
+
+
+# for canidate in the innovation challenge (all teams) (contains user_id, innovation_challenge_id, and team (regular id) )
+class canidateTeams(db.Model):
+    # Explicitly set the table name
+    __tablename__ = 'canidateTeams'  
+
+
+    # team number
+    id = db.Column(db.Integer, primary_key=True)
+
+    # semi-color separated list of user_ids, ex: 2;3;4;5;6
+    user_ids = db.Column(db.String(5000), nullable=False)
+
+    # foreign key -> innovation_challenge_id (what challenge is this for)
+    innovation_challenge_id = db.Column(db.Integer, db.ForeignKey('innovation_challenge.id'), nullable=False)
+
+    github_link = db.Column(db.String(150), nullable=False)
+    figmaLink = db.Column(db.String(150), nullable=False)
+    descriptionOfProject = db.Column(db.String(5000), nullable=False)
+    
+    # db relational
+    innovation_challenge = db.relationship('InnovationChallenge', backref='canidateTeams')
+
+# canidate to team -> easy mapping between user and team
+class canidateToTeam(db.Model):
+
+    __tablename__ = 'canidateToTeam'  
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('canidate.id'), nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('canidateTeams.id'), nullable=False)
+
+    # db relational
+    canidate = db.relationship('Canidate', backref='canidateToTeam')
+    team = db.relationship('canidateTeams', backref='canidateToTeam')
+

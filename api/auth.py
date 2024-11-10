@@ -16,6 +16,8 @@ auth = Blueprint('auth', __name__)
     "email": "john@example.com",
     "gradDate": "2027",
     "location": "New York",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://www.github.com
     "password": "securepassword123"
 }
 """
@@ -30,6 +32,8 @@ def signup():
     username = data.get('username')
     email = data.get('email')
     gradDate = data.get('gradDate')
+    linkedIn = data.get('linkedIn')
+    github = data.get('github')
     password = data.get('password')
     location = data.get('location')
 
@@ -60,6 +64,8 @@ def signup():
         gradDate=gradDate,
         location=location,
         password_hash=password_hash,
+        linkedIn=linkedIn,
+        github=github,
         date_created=datetime.utcnow()
     )
 
