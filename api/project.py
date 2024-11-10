@@ -3,13 +3,12 @@ from flask_jwt_extended import create_access_token, jwt_required
 from .models import *
 
 
-project = Blueprint('project', __name__)
+project = Blueprint("project", __name__)
+
 
 # works
-@project.route('/test', methods=['GET'])
-def test():
-    # get everything from the canidateTeams table using sql query
-    # canidateTeams.query.all()
-    return jsonify({'message': 'Test route'}) 
-
-    
+@project.route("/getAllTeams", methods=["GET"])
+def getAllTeams():
+    teams = canidateTeams.query.all()
+    teams_list = [team.to_dict() for team in teams]
+    return jsonify(teams_list)
