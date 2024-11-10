@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required
 from .models import *
-
+from . import db
 import boto3
 import requests
 from io import BytesIO
