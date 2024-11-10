@@ -71,6 +71,12 @@ class InnovationChallenge(db.Model):
 
     # foreign key -> recruiter_id (recruiter who posted the challenge) 
     recruiter_id = db.Column(db.Integer, db.ForeignKey('recruiter.id'), nullable=False)
+    # get the recruiter email / first name / last name -> based of ID, relational
+    recruiter_email = db.Column(db.String(150), nullable=False)
+    recruiter_firstName = db.Column(db.String(150), nullable=False)
+    recruiter_lastName = db.Column(db.String(150), nullable=False)
+    
+
     recruiter = db.relationship('Recruiter', backref='innovation_challenge')
 
 
@@ -82,9 +88,11 @@ class canidateTeams(db.Model):
 
     # team number
     id = db.Column(db.Integer, primary_key=True)
-
-    # semi-color separated list of user_ids, ex: 2;3;4;5;6
+    projectName = db.Column(db.String(250), nullable=False)
+    # semi-color separated list of user_ids, ex: 2;3;4;5;6 / emails / names (First Name Last Name) -. comman seperated
     user_ids = db.Column(db.String(5000), nullable=False)
+    user_emails = db.Column(db.String(5000), nullable=False)
+    user_names = db.Column(db.String(5000), nullable=False)
 
     # foreign key -> innovation_challenge_id (what challenge is this for)
     innovation_challenge_id = db.Column(db.Integer, db.ForeignKey('innovation_challenge.id'), nullable=False)
